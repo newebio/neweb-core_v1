@@ -6,8 +6,8 @@ export function data(target: any, propertyKey: string) {
     target.__data.push(propertyKey);
 }
 export function action(target: any, propertyKey: string) {
-    if (!target._actions) {
-        target._actions = [];
+    if (!target.__actions) {
+        target.__actions = [];
     }
     target._actions.push(propertyKey);
 }

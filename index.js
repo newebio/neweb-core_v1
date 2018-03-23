@@ -10,8 +10,8 @@ function data(target, propertyKey) {
 }
 exports.data = data;
 function action(target, propertyKey) {
-    if (!target._actions) {
-        target._actions = [];
+    if (!target.__actions) {
+        target.__actions = [];
     }
     target._actions.push(propertyKey);
 }
