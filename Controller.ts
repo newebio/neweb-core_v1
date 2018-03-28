@@ -1,10 +1,11 @@
 import { Onemitter } from "onemitter";
-export interface IControllerConfig<D, P> {
+export interface IControllerConfig<P, D, C> {
     params: P;
     data: D;
+    context: C;
 }
-export default class Controller<D, P> extends Onemitter<D> {
-    constructor(protected config: IControllerConfig<D, P>) {
+export default class Controller<P, D, C> extends Onemitter<D> {
+    constructor(protected config: IControllerConfig<P, D, C>) {
         super();
         this.onInit();
     }
