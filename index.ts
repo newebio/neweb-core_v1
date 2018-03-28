@@ -1,13 +1,8 @@
-export { default as DataSource } from "./DataSource";
-export function data(target: any, propertyKey: string) {
-    if (!target.__data) {
-        target.__data = [];
-    }
-    target.__data.push(propertyKey);
-}
-export function action(target: any, propertyKey: string) {
-    if (!target.__actions) {
-        target.__actions = [];
-    }
-    target._actions.push(propertyKey);
+export { default as Controller } from "./Controller";
+export * from "./Controller";
+export interface IViewProps<P, D> {
+    params: P;
+    data: D;
+    navigate: (url: string) => void;
+    dispatch: (actionName: string, ...args: any[]) => Promise<void>;
 }
