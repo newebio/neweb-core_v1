@@ -7,6 +7,7 @@ export interface IControllerConfig<P, D, C> {
         setItem: (name: string, value: any) => Promise<void>;
         getItem: (name: string) => Promise<any>;
     };
+    navigate: (url: string) => void;
 }
 export default class Controller<P, D, C> extends Onemitter<D> {
     constructor(protected config: IControllerConfig<P, D, C>) {
