@@ -3,6 +3,10 @@ export interface IControllerConfig<P, D, C> {
     params: P;
     data: D;
     context: C;
+    session: {
+        setItem: (name: string, value: any) => Promise<void>;
+        getItem: (name: string) => Promise<any>;
+    };
 }
 export default class Controller<P, D, C> extends Onemitter<D> {
     constructor(protected config: IControllerConfig<P, D, C>) {
