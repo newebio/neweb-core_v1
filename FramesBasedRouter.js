@@ -14,6 +14,23 @@ class FramesBasedRouter {
         this.config = config;
         this.basePath = "/";
     }
+    resolve({ request, session }) {
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const page = yield this.resolvePage({ url: request.url, session });
+                return {
+                    status: 200,
+                    page,
+                };
+            }
+            catch (e) {
+                return {
+                    status: 404,
+                    text: e.toString(),
+                };
+            }
+        });
+    }
     resolvePage({ url: rawUrl }) {
         return __awaiter(this, void 0, void 0, function* () {
             const url = url_1.parse(rawUrl);
@@ -39,23 +56,6 @@ class FramesBasedRouter {
                 }),
             };
             return page;
-        });
-    }
-    resolve({ request, session }) {
-        return __awaiter(this, void 0, void 0, function* () {
-            try {
-                const page = yield this.resolvePage({ url: request.url, session });
-                return {
-                    status: 200,
-                    page,
-                };
-            }
-            catch (e) {
-                return {
-                    status: 404,
-                    text: e.toString(),
-                };
-            }
         });
     }
     parseParams(query) {

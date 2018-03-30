@@ -11,7 +11,24 @@ class FramesBasedRouter<C, CONFIG> implements IRouter {
     constructor(protected config: IFramesBasedRouter<C, CONFIG>) {
 
     }
-    public async resolvePage({ url: rawUrl }: {
+    public async resolve({ request, session }: {
+        request: IRequest;
+        session: ISession;
+    }): Promise<IRoute> {
+        try {
+            const page = await this.resolvePage({ url: request.url, session });
+            return {
+                status: 200,
+                page,
+            };
+        } catch (e) {
+            return {
+                status: 404,
+                text: e.toString(),
+            };
+        }
+    }
+    protected async resolvePage({ url: rawUrl }: {
         url: string;
         session: ISession;
     }) {
@@ -41,23 +58,6 @@ class FramesBasedRouter<C, CONFIG> implements IRouter {
             }),
         };
         return page;
-    }
-    public async resolve({ request, session }: {
-        request: IRequest;
-        session: ISession;
-    }): Promise<IRoute> {
-        try {
-            const page = await this.resolvePage({ url: request.url, session });
-            return {
-                status: 200,
-                page,
-            };
-        } catch (e) {
-            return {
-                status: 404,
-                text: e.toString(),
-            };
-        }
     }
     protected parseParams(query: string) {
         const queryParams = query.split("&");

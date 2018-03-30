@@ -13,7 +13,6 @@ export interface IViewProps<P, D> {
 }
 export interface IRouter {
     resolve(params: { request: IRequest; session: ISession; }): Promise<IRoute>;
-    resolvePage(params: { url: string; session: ISession }): Promise<IRoutePage>;
 }
 export interface IPackInfo {
     name: string;
