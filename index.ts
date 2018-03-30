@@ -26,6 +26,7 @@ export interface IApp {
     resolveFrameViewModule(frameName: string): Promise<IPackInfo>;
     requireFrameController(frameName: string): any;
     requireFrameView(frameName: string): Promise<React.ComponentClass<any>>;
+    requireRouterModule(): any;
 }
 export interface IRequest {
     url: string;
