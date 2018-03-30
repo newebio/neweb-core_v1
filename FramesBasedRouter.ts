@@ -1,12 +1,14 @@
 import { parse } from "url";
 import { IApp, IRequest, IRoute, IRouter } from ".";
 
-export interface IFramesBasedRouter {
+export interface IFramesBasedRouter<C, CONFIG> {
     app: IApp;
+    context: C;
+    config: CONFIG;
 }
-class FramesBasedRouter implements IRouter {
+class FramesBasedRouter<C, CONFIG> implements IRouter {
     protected basePath = "/";
-    constructor(protected config: IFramesBasedRouter) {
+    constructor(protected config: IFramesBasedRouter<C, CONFIG>) {
 
     }
     public async resolvePage(rawUrl: string) {
