@@ -97,6 +97,10 @@ export interface IUnknownErrorRoute {
     status: 500;
     text: string;
 }
+export interface IRedirectRoute {
+    status: 302;
+    page: IRoutePage;
+}
 
 export interface ICookie {
     name: string;
