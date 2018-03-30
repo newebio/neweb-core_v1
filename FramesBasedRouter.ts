@@ -1,5 +1,5 @@
 import { parse } from "url";
-import { IApp, IRequest, IRoute, IRouter } from ".";
+import { IApp, IRequest, IRoute, IRouter, ISession } from ".";
 
 export interface IFramesBasedRouter<C, CONFIG> {
     app: IApp;
@@ -11,7 +11,10 @@ class FramesBasedRouter<C, CONFIG> implements IRouter {
     constructor(protected config: IFramesBasedRouter<C, CONFIG>) {
 
     }
-    public async resolvePage(rawUrl: string) {
+    public async resolvePage({ url: rawUrl }: {
+        url: string;
+        session: ISession;
+    }) {
         const url = parse(rawUrl);
         if (!url.pathname) {
             throw new Error("Url should contain path: " + url);
@@ -39,9 +42,12 @@ class FramesBasedRouter<C, CONFIG> implements IRouter {
         };
         return page;
     }
-    public async resolve(request: IRequest): Promise<IRoute> {
+    public async resolve({ request, session }: {
+        request: IRequest;
+        session: ISession;
+    }): Promise<IRoute> {
         try {
-            const page = await this.resolvePage(request.url);
+            const page = await this.resolvePage({ url: request.url, session });
             return {
                 status: 200,
                 page,

@@ -14,7 +14,7 @@ class FramesBasedRouter {
         this.config = config;
         this.basePath = "/";
     }
-    resolvePage(rawUrl) {
+    resolvePage({ url: rawUrl }) {
         return __awaiter(this, void 0, void 0, function* () {
             const url = url_1.parse(rawUrl);
             if (!url.pathname) {
@@ -41,10 +41,10 @@ class FramesBasedRouter {
             return page;
         });
     }
-    resolve(request) {
+    resolve({ request, session }) {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                const page = yield this.resolvePage(request.url);
+                const page = yield this.resolvePage({ url: request.url, session });
                 return {
                     status: 200,
                     page,

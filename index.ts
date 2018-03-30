@@ -12,8 +12,8 @@ export interface IViewProps<P, D> {
     dispatch: (actionName: string, ...args: any[]) => Promise<void>;
 }
 export interface IRouter {
-    resolve(req: IRequest): Promise<IRoute>;
-    resolvePage(url: string): Promise<IRoutePage>;
+    resolve(params: { request: IRequest; session: ISession; }): Promise<IRoute>;
+    resolvePage(params: { url: string; session: ISession }): Promise<IRoutePage>;
 }
 export interface IPackInfo {
     name: string;
