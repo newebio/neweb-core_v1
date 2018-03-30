@@ -2,6 +2,8 @@
 import React = require("react");
 export { default as Controller } from "./Controller";
 export * from "./Controller";
+export { default as FramesBasedRouter } from "./FramesBasedRouter";
+export * from "./FramesBasedRouter";
 import { IncomingHttpHeaders } from "http";
 export interface IViewProps<P, D> {
     params: P;
