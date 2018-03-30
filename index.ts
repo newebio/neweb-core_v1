@@ -19,6 +19,12 @@ export interface IPackInfo {
     name: string;
     type: "local" | "npm" | "internal";
     version?: string;
+    modules: IModuleInfo[];
+}
+export interface IModuleInfo {
+    name: string;
+    type: "local" | "npm" | "internal";
+    version?: string;
 }
 export interface IApp {
     fillTemplate(html: string, meta: IPageMetaInfo, initial: any): Promise<string>;
