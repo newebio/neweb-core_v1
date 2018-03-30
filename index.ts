@@ -76,7 +76,7 @@ export interface IModule {
 export interface IInitialInfo {
     page: IPage;
 }
-export type IRoute = IPageRoute | INotFoundRoute | IUnknownErrorRoute;
+export type IRoute = IPageRoute | INotFoundRoute | IUnknownErrorRoute | IRedirectRoute;
 export interface IPageRoute {
     status: 200;
     page: IRoutePage;
